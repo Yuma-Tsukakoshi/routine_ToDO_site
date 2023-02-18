@@ -273,12 +273,21 @@ header
   width: 100%;
   padding: 16px;
   height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header-logo{
-
+.header-nav{
+  display: flex;
 }
-
+.nav-title{
+  padding: 16px;
+  cursor: pointer;
+}
+.nav-list{
+  display: none;
+}
 
 
 /*==================================================
