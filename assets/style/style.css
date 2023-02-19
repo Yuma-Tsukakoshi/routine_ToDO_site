@@ -315,6 +315,7 @@ main
 }
 .routine-list{
   margin: 24px;
+  width: 100%;
 }
 .routine-items{
   margin-top: 12px;
@@ -322,6 +323,7 @@ main
   font-size: 18px;
   align-items: center;
   gap: 35px;
+  width: 40%;
   display: flex;
   transition: color .3s ease-in-out; 
 }
@@ -374,6 +376,18 @@ main
   width: 60%;
 }
 
+/* 分　input */
+.form-control{
+  border-radius: 15px;
+  height: 30px;
+  width: 50px;
+  padding: 12px;
+  background-color: rgba(98, 24, 148, 0.603);
+  margin: 0 0 0 auto;
+}
+.form-control::after{
+  content: "分";
+}
 
 /* ===================================================
 footer
