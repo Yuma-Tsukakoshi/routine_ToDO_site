@@ -31,10 +31,10 @@ for(let i=0; i<routineList.length;i++){
   let link = routineList[i].link ? routineList[i].link : '';
   routineHTML += `<li class="routine-items">
   <div class="toggle-switch">
-    <input type="checkbox" id="toggle${i}" class="button"/>
+    <input type="checkbox" id="toggle${i}" class="button" data="${i}"/>
     <label for="toggle${i}" class="border"></label>
   </div>
-  <a href="${link}">${routineList[i].content}</a><input type="text" class="form-control" class="form-control" value=0>
+  <a href="${link}">${routineList[i].content}</a><input type="text" class="form-control" data="${i}" value=0>
 </li>`
 }
 
@@ -73,4 +73,16 @@ $("#reset").on("click",function(){
   $("#sec").html(0);
   clearInterval(counter);
   time = 0
+})
+
+$("#record").on("click",function(){
+  let selectedData = $(".button:checked").attr("data");
+  $(".form-control").each(function(index){
+    if(Number(selectedData) === index){
+      // let restTime = $(this).val();
+      $(this).val(time);
+    }
+  })
+  clearInterval(counter);
+  time = 0;
 })
