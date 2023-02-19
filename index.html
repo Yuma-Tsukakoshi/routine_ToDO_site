@@ -47,14 +47,23 @@
   </header>
 
   <div class="container">
-    <main>
+    <main class="main">
+      <h2 class="routine-title">ルーティンやること</h2>
       <section class="routine">
-        <h2 class="routine-title">ルーティンやること</h2>
-        <h3 class="action-title">実施可否</h3>
-        <div class="timer-contents">
-          <label for="timer" class="timer-title">経過時間</label>
-          <input type="text" id="timer">
-          <input type="button" value="記録">
+        <div class="top-content">
+          <h3 class="action-title">実施可否</h3>
+          <div class="timer-contents">
+            <h4>＜経過時間＞</h4>
+            <p class="time">
+              <span id="min">0</span>分
+              <span id="sec">0</span>秒
+            </p>
+            <p class="timer-button">
+              <input type="button" id="start" value="START">
+              <input type="button" id="stop" value="STOP" disabled>
+              <input type="button" id="reset" value="RESET">
+            </p>
+          </div>
         </div>
         <ul class="routine-list" id="routine-list"></ul>
       </section>

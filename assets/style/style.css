@@ -296,41 +296,92 @@ main
 ==================================================== */
 .container{
   margin-top: 64px;
-  width: 100%
+}
+.top-content{
+  display: flex;
+  position: relative;
 }
 
+.main{
+  width: 100%;
+}
 .routine{
-  width: calc(50%-35px);
-  padding: 36px;
+  width: calc(40% - 18px);
+  margin: 36px;
+  padding: 8px;
+  border: 4px solid #333;
+  border-radius: 32px;
+  box-shadow: 5px 5px 2px rgba(63, 93, 226, 0.712);
+}
+.task{
+  width: calc(60% - 36px);
+  padding: 35px
 }
 .routine-title{
   font-size: 2rem;
   font-weight: bold;
 }
 .action-title{
-
+  margin: 48px 12px 0 18px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 2;
+  letter-spacing: 2px;
+  background-color: rgb(170, 207, 240);
+  border-radius: 8px;
+  padding: 4px;
 }
 .timer-contents{
-
+  background-color: #f3efef;
+  box-shadow: 2px 2px 2px #c4c2c2;
+  padding: 16px;
+  border-radius: 16px;
+  text-align: center;
+  position: absolute;
+  top: 2%;
+  right: 16%;
+}
+.timer-contents > h4{
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+.time{
+  margin: 8px 0;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+.timer-button > input[type="button"]{
+  padding: 4px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+  -webkit-text-stroke: 1px rgb(180, 179, 179);
+}
+.timer-button > input[type="button"]:nth-child(1){
+  background-color: rgba(15, 56, 238, 0.7);
+}
+.timer-button > input[type="button"]:nth-child(2){
+  background-color: rgb(9, 180, 247);
+}
+.timer-button > input[type="button"]:nth-child(3){
+  background-color: rgb(13, 245, 226);
 }
 .routine-list{
-  margin: 24px;
+  margin-top: 64px;
+  margin-left: 12px;
   width: 100%;
 }
 .routine-items{
-  margin-top: 12px;
+  margin-top: 16px;
   font-weight: bold;
   font-size: 18px;
   align-items: center;
   gap: 35px;
-  width: 40%;
   display: flex;
   transition: color .3s ease-in-out; 
 }
-.routine-items:hover{
-  color: rgb(53, 125, 233);
-  
-}
+
 /* toggleボタン */
 .toggle-switch {
   margin-bottom: 5px;
@@ -360,7 +411,7 @@ main
 }
 
 .button:checked + .border {
-  background: #D81543;
+  background: #2c9de9;
 }
 
 .button:checked + .border::after {
@@ -376,14 +427,16 @@ main
   width: 60%;
 }
 
-/* 分　input */
+/* timer　input */
 .form-control{
-  border-radius: 15px;
-  height: 30px;
-  width: 50px;
+  border-radius: 18px;
+  height: 36px;
+  width: 70px;
   padding: 12px;
-  background-color: rgba(98, 24, 148, 0.603);
+  background-color: rgba(139, 138, 139, 0.678);
   margin: 0 0 0 auto;
+  text-align: center;
+  transform: translateX(-50%);
 }
 .form-control::after{
   content: "分";

@@ -34,8 +34,43 @@ for(let i=0; i<routineList.length;i++){
     <input type="checkbox" id="toggle${i}" class="button"/>
     <label for="toggle${i}" class="border"></label>
   </div>
-  <a href="${link}">${routineList[i].content}</a><input type="text" class="form-control" class="form-control">
+  <a href="${link}">${routineList[i].content}</a><input type="text" class="form-control" class="form-control" value=0>
 </li>`
 }
 
 $("#routine-list").html(routineHTML);
+
+// =======================================
+// タイマー
+// =======================================
+let counter;
+let time = 0;
+// もしスタートボタンが不活性化ならばスタートを活性化し、ストップを不活性化する
+function toggle(){
+  if($("#start").prop('disabled')){
+    $("#start").prop('disabled',false);
+    $("#stop").prop('disabled',true);
+  }else{
+    $("#start").prop('disabled',true);
+    $("#stop").prop('disabled',false);
+  }
+}
+function count(){
+  time++;
+  $("#sec").html(time%60);
+  $("#min").html(Math.floor(time/60));
+}
+$("#start").on("click",function(){
+  toggle();
+  counter = setInterval(count,1000);
+})
+$("#stop").on("click",function(){
+  toggle();
+  clearInterval(counter);
+})
+$("#reset").on("click",function(){
+  $("#min").html(0);
+  $("#sec").html(0);
+  clearInterval(counter);
+  time = 0
+})
