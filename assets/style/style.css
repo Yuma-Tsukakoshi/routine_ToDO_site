@@ -376,7 +376,7 @@ main
   width: 60%;
 }
 
-/* 分　input */
+/* timer　input */
 .form-control{
   border-radius: 15px;
   height: 30px;
@@ -384,6 +384,7 @@ main
   padding: 12px;
   background-color: rgba(98, 24, 148, 0.603);
   margin: 0 0 0 auto;
+  text-align: center;
 }
 .form-control::after{
   content: "分";

@@ -34,7 +34,7 @@ for(let i=0; i<routineList.length;i++){
     <input type="checkbox" id="toggle${i}" class="button"/>
     <label for="toggle${i}" class="border"></label>
   </div>
-  <a href="${link}">${routineList[i].content}</a><input type="text" class="form-control" class="form-control">
+  <a href="${link}">${routineList[i].content}</a><input type="text" class="form-control" class="form-control" value=0>
 </li>`
 }
 
