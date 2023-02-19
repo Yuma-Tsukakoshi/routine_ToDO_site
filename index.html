@@ -7,10 +7,13 @@
   <title>ROUTINE_TODO</title>
   <script src="./assets/scripts/jquery-3.6.1.min.js" defer></script>
   <script src="./assets/scripts/main.js" defer></script>
+  <script src="./assets/scripts/task.js" defer></script>
+  <script src="https://chancejs.com/chance.min.js" defer></script>
   <link rel="stylesheet" href="./assets/style/reset.css">
   <link rel="stylesheet" href="./assets/style/style.css">
 </head>
-<body>
+
+<body onload="fetchTasks()">
   <header class="header">
     <figure class="header-logo">
       <img src="./assets/logo.svg" alt="">
@@ -48,30 +51,60 @@
 
   <div class="container">
     <main class="main">
-      <h2 class="routine-title">ルーティンやること</h2>
-      <section class="routine">
-        <div class="top-content">
-          <h3 class="action-title">実施可否</h3>
-          <div class="timer-contents">
-            <h4>＜経過時間＞</h4>
-            <p class="time">
-              <span id="min">0</span>分
-              <span id="sec">0</span>秒
-            </p>
-            <p class="timer-button">
-              <input type="button" id="start" value="START">
-              <input type="button" id="stop" value="STOP" disabled>
-              <input type="button" id="reset" value="RESET">
-              <input type="button" id="record" value="RECORD">
-            </p>
+      <div class="top-title">
+        <h2 class="routine-title">ルーティンやること</h2>
+        <h2 class="routine-title">タスク追跡ツール</h2>
+      </div>
+
+      <div class="main-contents">
+        <section class="routine">
+          <div class="top-content">
+            <h3 class="action-title">実施可否</h3>
+            <div class="timer-contents">
+              <h4>＜経過時間＞</h4>
+              <p class="time">
+                <span id="min">0</span>分
+                <span id="sec">0</span>秒
+              </p>
+              <p class="timer-button">
+                <input type="button" id="start" value="START">
+                <input type="button" id="stop" value="STOP" disabled>
+                <input type="button" id="reset" value="RESET">
+                <input type="button" id="record" value="RECORD">
+              </p>
+            </div>
           </div>
-        </div>
-        <ul class="routine-list" id="routine-list"></ul>
-      </section>
-
-      <section class="task">
-
-      </section>
+          <ul class="routine-list" id="routine-list"></ul>
+        </section>
+  
+        <section class="task">
+          <div class="task-wrapper">
+            <h3>＜タスク生成＞</h3>
+            <form id="taskInputForm">
+              <div class="form-group">
+                <label for="task-name">タスク名</label>
+                <input type="text" class="form-content" id="task-name" placeholder="タスク名記入..." required>
+              </div>
+              <div class="form-group">
+                <label for="task-severity">優先度</label>
+                <select id="task-severity" class="form-content" required>
+                  <option value="高い" data="0">高い</option>
+                  <option value="標準" data="1">標準</option>
+                  <option value="低い" data="2">低い</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="task-deadline">締切日</label>
+                <input type="date" class="form-content" id="task-deadline" placeholder="締切日記入..." required>
+              </div>
+              <button type="submit" class="btn btn-primary">生成</button>
+            </form>
+          </div>
+          <div class="created-task">
+            <div id="taskList"></div>
+          </div>
+        </section>
+      </div>
     </main>
   </div>
 
