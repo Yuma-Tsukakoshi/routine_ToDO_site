@@ -276,6 +276,7 @@ header
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 10;
 }
 
 .header-nav{
@@ -293,6 +294,85 @@ header
 /*==================================================
 main
 ==================================================== */
+.container{
+  margin-top: 64px;
+  width: 100%
+}
+
+.routine{
+  width: calc(50%-35px);
+  padding: 36px;
+}
+.routine-title{
+  font-size: 2rem;
+  font-weight: bold;
+}
+.action-title{
+
+}
+.timer-contents{
+
+}
+.routine-list{
+  margin: 24px;
+}
+.routine-items{
+  margin-top: 12px;
+  font-weight: bold;
+  font-size: 18px;
+  align-items: center;
+  gap: 35px;
+  display: flex;
+  transition: color .3s ease-in-out; 
+}
+.routine-items:hover{
+  color: rgb(53, 125, 233);
+  
+}
+/* toggleボタン */
+.toggle-switch {
+  margin-bottom: 5px;
+}
+
+.border {
+  position: relative;
+  background: #2B2D42;
+  width: 80px;
+  height: 40px;
+  display: block;
+  border-radius: 20px;
+  cursor: pointer;
+  text-indent: -9999px;
+}
+
+.border::after {
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  top: 5px;
+  left: 5px;
+  border-radius: 50%;
+  transition-duration: 0.2s;
+}
+
+.button:checked + .border {
+  background: #D81543;
+}
+
+.button:checked + .border::after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+.button {
+  display: none;
+}
+
+.border:active::after {
+  width: 60%;
+}
 
 
 /* ===================================================

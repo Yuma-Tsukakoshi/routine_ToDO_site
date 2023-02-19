@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ROUTINE_TODO</title>
   <script src="./assets/scripts/jquery-3.6.1.min.js" defer></script>
-  <script src="./assets/scripts/main.js"></script>
+  <script src="./assets/scripts/main.js" defer></script>
   <link rel="stylesheet" href="./assets/style/reset.css">
   <link rel="stylesheet" href="./assets/style/style.css">
 </head>
@@ -46,7 +46,24 @@
     </nav>
   </header>
 
+  <div class="container">
+    <main>
+      <section class="routine">
+        <h2 class="routine-title">ルーティンやること</h2>
+        <h3 class="action-title">実施可否</h3>
+        <div class="timer-contents">
+          <label for="timer" class="timer-title">経過時間</label>
+          <input type="text" id="timer">
+          <input type="button" value="記録">
+        </div>
+        <ul class="routine-list" id="routine-list"></ul>
+      </section>
 
+      <section class="task">
+
+      </section>
+    </main>
+  </div>
 
 </body>
 </html>
