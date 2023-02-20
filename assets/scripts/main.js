@@ -71,7 +71,6 @@ function fav(id){
       fetchCheck();
     }
   })
-  console.log(localStorage);
 }
 
 // =======================================
