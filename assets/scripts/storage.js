@@ -12,7 +12,7 @@ function saveTask(e){
   let task = {
     id: taskId,
     name: NameVal,
-    severuty: SeverityVal,
+    severity: SeverityVal,
     date: DateVal,
     status : taskStatus
   }
@@ -21,7 +21,7 @@ function saveTask(e){
   //stringfy => JavaScriptオブジェクトをJSON 文字列に変換
 
   // ===========
-  //　配列にpushするときは辞書型配列に変換してから(parse)
+  //  配列にpushするときは辞書型配列に変換してから(parse)
   //  pushしたらJSON配列にすぐに戻す(stringfy)
   // ===========
 

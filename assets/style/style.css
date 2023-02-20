@@ -309,7 +309,6 @@ main
 
 .main{
   width: 100%;
-  margin: 36px;
 }
 
 .main-contents{
@@ -347,7 +346,7 @@ main
   line-height: 2;
   letter-spacing: 2px;
   background-color: rgb(170, 207, 240);
-  border-radius: 8px;
+  border-radius: 24px;
   padding: 4px;
   transform: translateY(100%);
 }
@@ -450,7 +449,7 @@ main
   width: 60%;
 }
 
-/* timer　input */
+/* timer input */
 .form-control{
   border-radius: 18px;
   height: 36px;
@@ -470,7 +469,85 @@ main
   border-radius: 32px;
   padding: 16px;
   box-shadow: 5px 5px 2px rgba(217, 219, 224, 0.712);
+  margin-top: 32px;
 }
+
+.task-wrapper{
+  background-color: #e0e0e0;
+  border-radius: 32px;
+  padding: 16px;
+  position: relative;
+}
+.task-wrapper > h3{
+  font-size: 16px;
+  font-weight: bold;
+  background-color:rgb(170, 207, 240);
+  width: 120px;
+  letter-spacing: 2px;
+  height: 40px;
+  line-height:40px;
+  border-radius: 20px;
+  text-align: center;
+}
+.form-group{
+  padding: 6px;
+  position: relative;
+  align-items: center;
+  display: flex;
+}
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+.flex .form-group:nth-child(1)
+{
+  width: 40%;
+  text-align: center;
+}
+.flex .form-group:nth-child(2)
+{
+  width: 60%;
+  text-align: center;
+}
+.form-group > label{
+  font-weight: bold;
+  font-size: 14px;
+  width: 20%;
+
+}
+.form-content{
+  /* position: absolute; */
+  display: block;
+  right: 5%;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 80%;
+  padding: 5px;
+}
+.btn-primary{
+  position: absolute;
+  margin-top: 12px;
+  font-size: 16px;
+  left: 50%;
+  top: 4%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  background-color:rgb(14, 78, 253);
+  color: #fff;
+  width: 80px;
+  letter-spacing: 2px;
+  height: 35px;
+  line-height:35px;
+  border-radius: 20px;
+  text-align: center;
+  transition: color , background-color .5s;
+}
+.btn-primary:hover{
+  color: #2B2D42;
+  background-color: #f3b122;
+}
+
+.created-task{}
 
 /* ===================================================
 footer
