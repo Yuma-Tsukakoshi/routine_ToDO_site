@@ -2,6 +2,10 @@
 
 $("#taskInputForm").submit(saveTask);
 
+window.addEventListener('DOMContentLoaded',()=>{
+  fetchTasks();
+})
+
 function saveTask(e){
   let NameVal = $("#task-name").val();
   let SeverityVal = $("#task-severity").val();
@@ -78,15 +82,17 @@ function fetchTasks(){
     let date = tasks[i].date;
     let status = tasks[i].status;
 
-    taskHTML += '<div class="well" style="background-color: #eee; padding: 36px; margin:35px">'+
+    taskHTML += '<div class="well">'+
     '<h6>Task ID: ' + id + '</h6>'+
-    '<p><span class="label label-info">' + status + '</span></p>'+
-    '<h3>' + name + '</h3>'+
-    '<p><span class="glyphicon glyphicon-time"></span> ' + severity + '</p>'+
-    '<p><span class="glyphicon glyphicon-user"></span> ' + date + '</p>'+
-    '<a href="#" onclick="setStatusDone(\''+id+'\')" class="btn btn-warning">Close</a> '+
+    '<p><span class="label label-info">状態:</span>'+ status + ' /</p>'+
+    '<h3>タスク名：' + name + ' /</h3>'+
+    '<p><span class="glyphicon glyphicon-time">優先度：</span> ' + severity + ' /</p>'+
+    '<p><span class="glyphicon glyphicon-user">締切日：</span> ' + date + ' /</p>'+ 
+    '<a href="#" onclick="setStatusDone(\''+id+'\')" class="btn btn-warning">Finish</a> '+
     '<a href="#" onclick="deleteTask(\''+id+'\')" class="btn btn-danger">Delete</a>'+
     '</div>';
   }
   taksList.html(taskHTML);
+
 }
+

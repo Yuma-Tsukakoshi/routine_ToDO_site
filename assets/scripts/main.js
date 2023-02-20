@@ -31,7 +31,7 @@ for(let i=0; i<routineList.length;i++){
   let link = routineList[i].link ? routineList[i].link : '';
   routineHTML += `<li class="routine-items">
   <div class="toggle-switch">
-    <input type="checkbox" id="toggle${i}" class="button checkBtn" data="${i}"/>
+    <input type="checkbox" id="toggle${i}" class="button checkBtn" data="${i}" onchange="fav(${i})" />
     <label for="toggle${i}" class="border"></label>
   </div>
   <a href="${link}">${routineList[i].content}</a><input type="text" class="form-control" data="${i}" value=0>
@@ -46,25 +46,29 @@ $("#routine-list").html(routineHTML);
 let FavElements;
 let FavLoad;
 
-// window.onload = function(){
-//   $(".checkBtn").each(function(index){
-//     FavLoad = JSON.parse(localStorage.getItem("checkbox_checked"+ index));
-//     if (FavLoad == true){
-//       FavElements = $(this);
-//       FavElements.checked = true;
-//     }
-//   })
-// }
+window.addEventListener('DOMContentLoaded',()=>{
+  fetchCheck();
+})
 
-function fav(){
+
+function fetchCheck(){
   $(".checkBtn").each(function(index){
-    FavElements = $(this);
-    //※コンソールを開いてこの文字列を確認してください
-    console.log("checkbox_checked"+ FavElements);
-    if (FavElements.checked == true){
-      localStorage.setItem("checkbox_checked"+ index, JSON.stringify(true));
-    } else {
-    localStorage.setItem("checkbox_checked"+ index, JSON.stringify(false));
+    FavLoad = JSON.parse(localStorage.getItem("checkbox_checked"+ index));
+    if (FavLoad == true){
+      $(this).prop("checked",true);
+    }
+  })
+}
+
+function fav(id){
+  $(".checkBtn").each(function(index){
+    if(id==index){
+      if ($(this).prop("checked")){
+        localStorage.setItem("checkbox_checked"+ index, JSON.stringify(true));
+      } else {
+        localStorage.setItem("checkbox_checked"+ index, JSON.stringify(false));
+      }
+      fetchCheck();
     }
   })
 }
@@ -108,7 +112,6 @@ $("#record").on("click",function(){
   let selectedData = $(".button:checked").attr("data");
   $(".form-control").each(function(index){
     if(Number(selectedData) === index){
-      // let restTime = $(this).val();
       $(this).val(time);
     }
   })
