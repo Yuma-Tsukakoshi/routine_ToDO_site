@@ -31,7 +31,7 @@ for(let i=0; i<routineList.length;i++){
   let link = routineList[i].link ? routineList[i].link : '';
   routineHTML += `<li class="routine-items">
   <div class="toggle-switch">
-    <input type="checkbox" id="toggle${i}" class="button" data="${i}"/>
+    <input type="checkbox" id="toggle${i}" class="button checkBtn" data="${i}"/>
     <label for="toggle${i}" class="border"></label>
   </div>
   <a href="${link}">${routineList[i].content}</a><input type="text" class="form-control" data="${i}" value=0>
@@ -39,6 +39,35 @@ for(let i=0; i<routineList.length;i++){
 }
 
 $("#routine-list").html(routineHTML);
+//========================================
+//チェックボックスの保存
+//========================================
+
+let FavElements;
+let FavLoad;
+
+// window.onload = function(){
+//   $(".checkBtn").each(function(index){
+//     FavLoad = JSON.parse(localStorage.getItem("checkbox_checked"+ index));
+//     if (FavLoad == true){
+//       FavElements = $(this);
+//       FavElements.checked = true;
+//     }
+//   })
+// }
+
+function fav(){
+  $(".checkBtn").each(function(index){
+    FavElements = $(this);
+    //※コンソールを開いてこの文字列を確認してください
+    console.log("checkbox_checked"+ FavElements);
+    if (FavElements.checked == true){
+      localStorage.setItem("checkbox_checked"+ index, JSON.stringify(true));
+    } else {
+    localStorage.setItem("checkbox_checked"+ index, JSON.stringify(false));
+    }
+  })
+}
 
 // =======================================
 // タイマー
