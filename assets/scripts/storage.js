@@ -2,6 +2,10 @@
 
 $("#taskInputForm").submit(saveTask);
 
+window.addEventListener('DOMContentLoaded',()=>{
+  fetchTasks();
+})
+
 function saveTask(e){
   let NameVal = $("#task-name").val();
   let SeverityVal = $("#task-severity").val();
@@ -78,7 +82,7 @@ function fetchTasks(){
     let date = tasks[i].date;
     let status = tasks[i].status;
 
-    taskHTML += '<div class="well" style="background-color: #eee; padding: 36px; margin:35px">'+
+    taskHTML += '<div class="well" style="background-color: #eee;display:flex;margin:16px;padding:16px">'+
     '<h6>Task ID: ' + id + '</h6>'+
     '<p><span class="label label-info">' + status + '</span></p>'+
     '<h3>' + name + '</h3>'+
@@ -90,3 +94,4 @@ function fetchTasks(){
   }
   taksList.html(taskHTML);
 }
+
