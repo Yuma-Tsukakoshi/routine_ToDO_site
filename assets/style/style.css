@@ -262,6 +262,9 @@ img {
   max-width: 100%;
 }
 
+li{
+  list-style: none;
+}
 
 /* ================================================
 header
@@ -280,17 +283,31 @@ header
   z-index: 10;
 }
 
+/* drop-down-menu */
+/*レイアウトを整える*/
 .header-nav{
+  gap: 32px;
+}
+.header-nav .header-nav-contents {
   display: flex;
 }
-.nav-title{
-  padding: 16px;
+.header-nav .header-nav-contents .header-nav-list {
+  text-align: center;
   cursor: pointer;
 }
-.nav-list{
-  display: none;
+.header-nav .header-nav-contents .header-nav-list div {
+  padding: 10px;
+  color: #2B2D42;
+  font-weight: bold;
+  border-radius: 16px;
+  background-color: rgb(170, 207, 240);
 }
-
+.header-nav .header-nav-contents .header-nav-list .dropdown-menu {
+  background-color: #dadbdb;
+}
+.header-nav .header-nav-contents .header-nav-list .dropdown-menu li {
+  padding: 10px 0;
+}
 
 /*==================================================
 main

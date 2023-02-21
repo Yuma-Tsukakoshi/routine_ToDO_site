@@ -1,5 +1,21 @@
 "use strict";
 
+//========================================
+// ドロップダウンメニュー
+//========================================
+$('.header-nav-list').find('.dropdown-menu').hide();
+$('.header-nav-list').hover(function(){
+  //.dropdown-menuをslideDown
+  $(".dropdown-menu:not(:animated)", this).slideDown();
+  //hoverが外れた場合
+    }, function(){
+  //.dropdown-menuをslideUp
+  $(".dropdown-menu",this).slideUp();
+});
+
+//========================================
+//ルーティンタスク表示
+//========================================
 let routineHTML =  ""; 
 let routineList = [
   {
