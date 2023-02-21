@@ -287,26 +287,44 @@ header
 /*レイアウトを整える*/
 .header-nav{
   gap: 32px;
+  position: relative;
 }
 .header-nav .header-nav-contents {
+  position: fixed;
+  top: 2%;
+  right: 5%;
   display: flex;
+  /* position: absolute; */
 }
 .header-nav .header-nav-contents .header-nav-list {
   text-align: center;
   cursor: pointer;
 }
 .header-nav .header-nav-contents .header-nav-list div {
-  padding: 10px;
+  padding: 10px 80px; 
   color: #2B2D42;
   font-weight: bold;
   border-radius: 16px;
   background-color: rgb(170, 207, 240);
+  margin:0 30px;
 }
 .header-nav .header-nav-contents .header-nav-list .dropdown-menu {
   background-color: #dadbdb;
+  border-radius: 16px;
+  width: 100%;
 }
 .header-nav .header-nav-contents .header-nav-list .dropdown-menu li {
+  border: 1px solid #333;
   padding: 10px 0;
+  width: 100%;
+  font-weight: bold;
+  transition: .3s;
+  border-radius: 16px;
+}
+.header-nav .header-nav-contents .header-nav-list .dropdown-menu li:hover {
+  background-color: #65b1f0;
+  color: #fff;
+  
 }
 
 /*==================================================
