@@ -564,6 +564,10 @@ main
   display: inline-block;
 }
 
+.opacity{
+  opacity: 0.5;
+}
+
 .well > .btn{
   height: 20px;
   font-size: 14px;

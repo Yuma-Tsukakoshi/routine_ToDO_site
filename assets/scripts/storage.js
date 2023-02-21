@@ -5,6 +5,10 @@ $("#taskInputForm").submit(saveTask);
 window.addEventListener('DOMContentLoaded',()=>{
   fetchTasks();
 })
+window.addEventListener('DOMContentLoaded',()=>{
+  setOpacity();
+})
+
 
 function saveTask(e){
   let NameVal = $("#task-name").val();
@@ -41,6 +45,7 @@ function saveTask(e){
 
   $("#taskInputForm").trigger("reset");
   fetchTasks();
+  setOpacity();
   e.preventDefault();
 }
 
@@ -54,8 +59,21 @@ function setStatusDone(id){
   localStorage.setItem('tasks',JSON.stringify(tasks));
 
   fetchTasks();
+  setOpacity();
 }
 
+function setOpacity(){
+  let taskElements = document.querySelectorAll(".well");
+  taskElements.forEach(taskElement=>{
+    // console.log(taskElement)
+    let taskcontent = taskElement.querySelector("p");
+    let taskFirstIndex = taskcontent.innerText.indexOf(':');
+    let taskStatus = taskcontent.innerText.substr(taskFirstIndex+1,4);
+    if(taskStatus == "Done"){
+      taskElement.classList.add('opacity');
+    }
+  })
+}
 
 function deleteTask(id){
   let tasks = JSON.parse(localStorage.getItem('tasks'));
@@ -68,6 +86,7 @@ function deleteTask(id){
   localStorage.setItem('tasks',JSON.stringify(tasks));
   
   fetchTasks();
+  setOpacity();
 }
 
 function fetchTasks(){
@@ -82,7 +101,7 @@ function fetchTasks(){
     let date = tasks[i].date;
     let status = tasks[i].status;
 
-    taskHTML += '<div class="well">'+
+    taskHTML += '<div class="well" data='+ id +'>'+
     '<h6>Task ID: ' + id + '</h6>'+
     '<p><span class="label label-info">状態:</span>'+ status + ' /</p>'+
     '<h3>タスク名：' + name + ' /</h3>'+
