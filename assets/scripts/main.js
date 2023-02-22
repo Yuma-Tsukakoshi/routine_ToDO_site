@@ -47,10 +47,10 @@ for(let i=0; i<routineList.length;i++){
   let link = routineList[i].link ? routineList[i].link : '';
   routineHTML += `<li class="routine-items">
   <div class="toggle-switch">
-    <input type="checkbox" id="toggle${i}" name="check[]" class="button checkBtn" data="${i}" onchange="fav(${i})" />
+    <input type="checkbox" id="toggle${i}" name="check[]" class="button checkBtn" data="${i}" onchange="fav(${i})" onclick="setSelected(${i})"/>
     <label for="toggle${i}" class="border"></label>
   </div>
-  <a href="${link}">${routineList[i].content}</a><input type="text" class="form-control" data="${i}" value=0>
+  <abbr title="リンクに飛びます"><a href="${link}" target="_blank">${routineList[i].content}</a></abbr><input type="text" class="form-control" data="${i}" value=0>
 </li>`
 }
 
@@ -90,6 +90,17 @@ function fav(id){
   })
 }
 
+function setSelected(id){
+  $(".checkBtn").each(function(index,check){
+    if($(check).is('[selected]')){
+      $(check).removeAttr("selected");
+    }
+    if(index==id){
+      $(check).attr("selected","selected");
+    }
+  })
+}
+
 // =======================================
 // タイマー
 // =======================================
@@ -122,16 +133,20 @@ $("#reset").on("click",function(){
   $("#min").html(0);
   $("#sec").html(0);
   clearInterval(counter);
-  time = 0
+  time = 0;
 })
 
 $("#record").on("click",function(){
-  let selectedData = $(".button:checked").attr("data");
+  let selectedData = $('.button[selected="selected"]').attr("data");
   $(".form-control").each(function(index){
     if(Number(selectedData) === index){
-      $(this).val(time);
+      // $(this).val(Math.floor(time/60));
+      let beforeTime = $(this).val();
+      $(this).val(time + parseInt(beforeTime));
     }
   })
   clearInterval(counter);
+  $("#min").html(0);
+  $("#sec").html(0);
   time = 0;
 })
