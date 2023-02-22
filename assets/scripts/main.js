@@ -64,8 +64,8 @@ let FavLoad;
 
 window.addEventListener('DOMContentLoaded',()=>{
   fetchCheck();
+  setTime();
 })
-
 
 function fetchCheck(){
   $(".checkBtn").each(function(index){
@@ -137,16 +137,55 @@ $("#reset").on("click",function(){
 })
 
 $("#record").on("click",function(){
-  let selectedData = $('.button[selected="selected"]').attr("data");
-  $(".form-control").each(function(index){
-    if(Number(selectedData) === index){
-      // $(this).val(Math.floor(time/60));
-      let beforeTime = $(this).val();
-      $(this).val(time + parseInt(beforeTime));
-    }
-  })
+  // let selectedData = $('.button[selected="selected"]').attr("data");
+  // $(".form-control").each(function(index){
+  //   if(Number(selectedData) === index){
+  //     // $(this).val(Math.floor((time + parseInt(beforeTime))/60);
+  //     let beforeTime = $(this).val();
+  //     $(this).val(time + parseInt(beforeTime));
+  //   }
+  // })
+  setTime();
   clearInterval(counter);
   $("#min").html(0);
   $("#sec").html(0);
   time = 0;
 })
+
+// ======================
+// 経過時間と累計時間の保持
+// ======================
+function setTime(){
+  //timeの要素持ってくる インクリメントで値保持
+  if(localStorage.getItem('routineItem')==null){
+    let eachTime = [];
+    for(let i=0;i<$(".routine-items").length;i++){
+      eachTime.push(0);
+      localStorage.setItem('routineItem',JSON.stringify(eachTime));
+    } 
+  }else{
+    let selectedData = $('.button[selected="selected"]').attr("data");
+    let routineTime = JSON.parse(localStorage.getItem('routineItem'));
+    $(".form-control").each(function(index){
+      $(this).val(routineTime[index]);
+      if(Number(selectedData) === index){
+        // $(this).val(Math.floor((time + parseInt(beforeTime))/60);
+        routineTime[index] += time ;
+        $(this).val((routineTime[index]));
+        localStorage.setItem('routineItem',JSON.stringify(routineTime));
+      }
+    })
+  }
+}
+
+
+// ======================
+// 時間とトグルボタンの初期化
+// ======================
+// function clearInput(){
+//   //時間とトグルボタンの要素持ってくる
+//   localStorage.getItem(,);
+// }
+
+
+

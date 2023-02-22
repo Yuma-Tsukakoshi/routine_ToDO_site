@@ -68,7 +68,6 @@ function setStatusDone(id){
 function setOpacity(){
   let taskElements = document.querySelectorAll(".well");
   taskElements.forEach(taskElement=>{
-    // console.log(taskElement)
     let taskcontent = taskElement.querySelector("p");
     let taskFirstIndex = taskcontent.innerText.indexOf(':');
     let taskStatus = taskcontent.innerText.substr(taskFirstIndex+1,4);
