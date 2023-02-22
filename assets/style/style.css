@@ -350,7 +350,7 @@ main
 }
 /* routine */
 .routine{
-  width: calc(50% - 18px);
+  width: calc(50% - 36px);
   margin: 36px;
   margin-bottom: 0;
   position: relative;
@@ -483,6 +483,24 @@ main
   width: 60%;
 }
 
+/* rest-count */
+.record-rest{
+  display: flex;
+  position: absolute;
+  bottom: 2%;
+  right: 5%;
+}
+.record-rest>h3{
+  font-weight: bold;
+  margin-right: 32px;
+  margin-bottom: 10px;
+}
+.record-rest>h3>span{
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 32px;
+}
+
 /* timer input */
 .form-control{
   border-radius: 18px;
@@ -498,7 +516,7 @@ main
 
 /* task */
 .task{
-  width: calc(60% - 32px);
+  width: calc(55% - 32px);
   background: #fff;
   border-radius: 32px;
   padding: 16px;
