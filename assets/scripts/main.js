@@ -47,7 +47,7 @@ for(let i=0; i<routineList.length;i++){
   let link = routineList[i].link ? routineList[i].link : '';
   routineHTML += `<li class="routine-items">
   <div class="toggle-switch">
-    <input type="checkbox" id="toggle${i}" class="button checkBtn" data="${i}" onchange="fav(${i})" />
+    <input type="checkbox" id="toggle${i}" name="check[]" class="button checkBtn" data="${i}" onchange="fav(${i})" />
     <label for="toggle${i}" class="border"></label>
   </div>
   <a href="${link}">${routineList[i].content}</a><input type="text" class="form-control" data="${i}" value=0>
@@ -85,6 +85,7 @@ function fav(id){
         localStorage.setItem("checkbox_checked"+ index, JSON.stringify(false));
       }
       fetchCheck();
+      restTask();
     }
   })
 }

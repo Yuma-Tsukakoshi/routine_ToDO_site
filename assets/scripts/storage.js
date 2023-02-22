@@ -8,6 +8,9 @@ window.addEventListener('DOMContentLoaded',()=>{
 window.addEventListener('DOMContentLoaded',()=>{
   setOpacity();
 })
+window.addEventListener('DOMContentLoaded',()=>{
+  restTask();
+})
 
 
 function saveTask(e){
@@ -115,3 +118,18 @@ function fetchTasks(){
 
 }
 
+function restTask(){
+  let taskLength = $(".routine-items").length;
+  let checkTask = $('input[name="check[]"]:checked').length;
+  $("#rest-count").html(taskLength - checkTask);
+  $("#achive").html(Math.floor(checkTask*100 / taskLength));
+
+  let condition = Math.floor(checkTask*100 / taskLength);
+  if(condition<=33){
+    $("#rest-count , #achive").css("backgroundColor","#f33a22");
+  }else if(condition<=66){
+    $("#rest-count , #achive").css("backgroundColor","#f3b122");
+  }else{
+    $("#rest-count , #achive").css("backgroundColor","rgb(7, 241, 144)");
+  }
+}
