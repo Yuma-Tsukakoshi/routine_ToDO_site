@@ -64,8 +64,11 @@ let FavLoad;
 
 window.addEventListener('DOMContentLoaded',()=>{
   fetchCheck();
+  setTime();
+  assignmentTime();
+  // リロードするとタイマーが一時停止し、startで再開する
+  //トグルボタン：リロード後もう一回押して戻してからrecordを押す！！
 })
-
 
 function fetchCheck(){
   $(".checkBtn").each(function(index){
@@ -105,7 +108,18 @@ function setSelected(id){
 // タイマー
 // =======================================
 let counter;
-let time = 0;
+function countTime(){
+  if(localStorage.getItem('time')==null){
+    let time = 0;
+    localStorage.setItem('time',JSON.stringify(time));
+  }else{
+    let time = JSON.parse(localStorage.getItem('time'));
+    time++;
+    $("#sec").html(time%60);
+    $("#min").html(Math.floor(time/60));
+    localStorage.setItem('time',JSON.stringify(time));
+  }
+}
 // もしスタートボタンが不活性化ならばスタートを活性化し、ストップを不活性化する
 function toggle(){
   if($("#start").prop('disabled')){
@@ -116,14 +130,9 @@ function toggle(){
     $("#stop").prop('disabled',false);
   }
 }
-function count(){
-  time++;
-  $("#sec").html(time%60);
-  $("#min").html(Math.floor(time/60));
-}
 $("#start").on("click",function(){
   toggle();
-  counter = setInterval(count,1000);
+  counter = setInterval(countTime,1000);
 })
 $("#stop").on("click",function(){
   toggle();
@@ -132,21 +141,66 @@ $("#stop").on("click",function(){
 $("#reset").on("click",function(){
   $("#min").html(0);
   $("#sec").html(0);
+  toggle();
   clearInterval(counter);
-  time = 0;
+  timeReset();
 })
 
 $("#record").on("click",function(){
-  let selectedData = $('.button[selected="selected"]').attr("data");
-  $(".form-control").each(function(index){
-    if(Number(selectedData) === index){
-      // $(this).val(Math.floor(time/60));
-      let beforeTime = $(this).val();
-      $(this).val(time + parseInt(beforeTime));
-    }
-  })
+  setTime();
   clearInterval(counter);
   $("#min").html(0);
   $("#sec").html(0);
-  time = 0;
+  timeReset();
 })
+
+function timeReset(){
+  let time = JSON.parse(localStorage.getItem('time'));
+  time=0;
+  localStorage.setItem('time',JSON.stringify(time));
+}
+
+function assignmentTime(){
+  let time = JSON.parse(localStorage.getItem('time'));
+  $("#sec").html(time%60);
+  $("#min").html(Math.floor(time/60));
+  localStorage.setItem('time',JSON.stringify(time));
+}
+
+// ======================
+// 経過時間と累計時間の保持
+// ======================
+function setTime(){
+  if(localStorage.getItem('routineItem')==null){
+    let eachTime = [];
+    for(let i=0;i<$(".routine-items").length;i++){
+      eachTime.push(0);
+      localStorage.setItem('routineItem',JSON.stringify(eachTime));
+    } 
+  }else{
+    let selectedData = $('.button[selected="selected"]').attr("data");
+    let routineTime = JSON.parse(localStorage.getItem('routineItem'));
+    let time = JSON.parse(localStorage.getItem('time'));
+    $(".form-control").each(function(index){
+      $(this).val(routineTime[index]);
+      if(Number(selectedData) === index){
+        routineTime[index] += time ;
+        $(this).val(Math.floor(routineTime[index]/60));
+        localStorage.setItem('routineItem',JSON.stringify(routineTime));
+      }
+    })
+    localStorage.setItem('time',JSON.stringify(time));
+  }
+}
+
+
+// ======================
+// 時間とトグルボタンの初期化
+// ======================
+// function clearInput(){
+//   //時間とトグルボタンの要素持ってくる
+//   localStorage.getItem(,);
+// }
+
+
+
