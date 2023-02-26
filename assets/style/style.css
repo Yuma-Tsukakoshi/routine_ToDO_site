@@ -306,6 +306,7 @@ header
   font-weight: bold;
   border-radius: 16px;
   background-color: rgb(170, 207, 240);
+  box-shadow: 5px 5px 2px rgba(202, 203, 206, 0.712);
   margin:0 30px;
 }
 .header-nav .header-nav-contents .header-nav-list .dropdown-menu {
@@ -488,7 +489,7 @@ main
   display: flex;
   position: absolute;
   bottom: 2%;
-  right: 5%;
+  left: 5%;
 }
 .record-rest>h3{
   font-weight: bold;
@@ -639,4 +640,21 @@ main
 .btn-danger{
   background-color: #f33a22;
   color: #fff;
+}
+
+.btn-reset{
+  position: absolute;
+  right: 3%;
+  bottom: 3%;
+  font-size: 16px;
+  font-weight: bold;
+  background-color:rgb(14, 78, 253);
+  color: #fff;
+  width: 80px;
+  letter-spacing: 2px;
+  height: 35px;
+  line-height:35px;
+  border-radius: 20px;
+  text-align: center;
+  transition: color , background-color .5s;
 }
