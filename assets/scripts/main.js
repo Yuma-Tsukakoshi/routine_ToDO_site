@@ -26,6 +26,11 @@ let routineList = [
     link : "https://www.ap-siken.com/apkakomon_pm.php",
     content : "応用情報技術者PM",
   },
+  
+  {
+    link : "#",
+    content : "Joverに向けて POSSE",
+  },
   {
     link : "https://www.kaggle.com/",
     content : "Kaggle",
@@ -38,10 +43,6 @@ let routineList = [
     link : "#",
     content : "インターンに向けて",
   },
-  {
-    link : "#",
-    content : "POSSE学習",
-  }
 ]
 for(let i=0; i<routineList.length;i++){
   let link = routineList[i].link ? routineList[i].link : '';
@@ -185,7 +186,8 @@ function setTime(){
       $(this).val(routineTime[index]);
       if(Number(selectedData) === index){
         routineTime[index] += time ;
-        $(this).val(Math.floor(routineTime[index]/60));
+        $(this).val(Math.floor(routineTime[index]));
+        // /60する
         localStorage.setItem('routineItem',JSON.stringify(routineTime));
       }
     })
@@ -197,10 +199,23 @@ function setTime(){
 // ======================
 // 時間とトグルボタンの初期化
 // ======================
-// function clearInput(){
-//   //時間とトグルボタンの要素持ってくる
-//   localStorage.getItem(,);
-// }
+function clearInput(){
+  let check = window.confirm("データの初期化を行いますか？");
+  //時間とトグルボタンの要素持ってくる
+  if(check){
+    $(".checkBtn").each(function(index){
+      localStorage.setItem("checkbox_checked"+ index,JSON.stringify(false));
+    })
+    $(".routine-items").each(function(index){
+      let eachtime =  JSON.parse(localStorage.getItem("routineItem"));
+      eachtime[index]=0;
+      localStorage.setItem('routineItem',JSON.stringify(eachtime));
+    }) 
+  }
+  location.reload();
+}
+
+$("#resetBtn").on("click",clearInput);
 
 
 
