@@ -186,7 +186,7 @@ function setTime(){
       $(this).val(routineTime[index]);
       if(Number(selectedData) === index){
         routineTime[index] += time ;
-        $(this).val(Math.floor(routineTime[index])/60);
+        $(this).val(Math.floor(routineTime[index]/60));
         localStorage.setItem('routineItem',JSON.stringify(routineTime));
       }
     })
