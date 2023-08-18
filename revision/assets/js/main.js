@@ -216,5 +216,10 @@ function clearInput(){
 
 $("#resetBtn").on("click",clearInput);
 
+// webapp遷移
+$(".js-openWebapp").on('click',function(){
+  location.href = 'http://localhost/webapp'
+})
+
 
 

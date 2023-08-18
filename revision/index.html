@@ -4,31 +4,34 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ROUTINE_TODO</title>
-  <script src="./assets/scripts/jquery-3.6.1.min.js" defer></script>
+  <title>Routine_TODO</title>
+  <script src="./assets/js/jquery-3.6.1.min.js" defer></script>
   <script src="https://kit.fontawesome.com/eca7fb4794.js" crossorigin="anonymous" defer></script>
-  <script src="./assets/scripts/main.js" defer></script>
-  <script src="./assets/scripts/storage.js" defer></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous" defer></script>
+  <script src="./assets/js/main.js" defer></script>
+  <script src="./assets/js/drag.js" defer></script>
+  <script src="./assets/js/storage.js" defer></script>
+  <script src="./assets/js/sticky-note.js" defer></script>
   <script src="https://chancejs.com/chance.min.js" defer></script>
-  <link rel="stylesheet" href="./assets/style/reset.css">
-  <link rel="stylesheet" href="./assets/style/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.css">
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/routine.css">
 </head>
 
 <body>
   <header class="header">
     <figure class="header-logo">
-      <img src="./assets/logo.svg" alt="">
+      <img src="./assets/img/logo.png" alt="POSSE">
     </figure>
     <nav class="header-nav">
       <ul class="header-nav-contents">
         <li class="header-nav-list">
-          <div class="nav-title"><a href="https://web.10nikki.com/diary/2/26#" target="_blank">今日の日記</a></div>
-        </li>
-        <li class="header-nav-list">
-          <div class="nav-title">POSSE</div>
+          <div class="header-button nav-title">POSSE</div>
           <ul class="dropdown-menu">
             <li class="nav-items">
-              <a href="https://docs.google.com/spreadsheets/d/1RS0V39nABZt5I-CgEype0yDlYIs922DnnaejWlsm-B8/edit#gid=1824200838" target="_blank">ph3カリキュラム</a>
+              <a href="https://github.com/Yuma-Tsukakoshi" target="_blank">Github</a>
             </li>
             <li class="nav-items">
               <a href="https://docs.google.com/spreadsheets/d/1W6UFRlzyWrJnPTNKabJUHVVEwBDMmy8ef1jAMpvpKCY/edit#gid=688004640" target="_blank">3.0振り返り</a>
@@ -45,20 +48,17 @@
           </ul>
         </li>
         <li class="header-nav-list">
-          <div class="nav-title">サブリンク</div>
+          <div class="header-button nav-title">zoomリンク</div>
           <ul class="dropdown-menu">
             <li class="nav-items">
-              <a href="https://techtrain.dev/mypage" target="_blank">Tech Train</a>
+              <a href="https://us02web.zoom.us/j/89249953679?pwd=VUdlekhQSlNZdi9Hem03VTFabG5lZz09" target="_blank">毎週のmu</a>
             </li>
             <li class="nav-items">
-              <a href="https://codeprep.jp/featured" target="_blank">CODEPREP</a>
+              <a href="https://us02web.zoom.us/j/89249953679?pwd=VUdlekhQSlNZdi9Hem03VTFabG5lZz09" target="_blank">チーム開 B</a>
             </li>
-            <li class="nav-items">
-              <a href="https://paiza.jp/works/mypage" target="_blank">Paizaラーニング</a>
-            </li>
-            <li class="nav-items">
-              <a href="https://tutorials.chainer.org/ja/tutorial.html" target="_blank">Chainer</a>
-            </li>
+            <!-- <li class="nav-items">
+              <a href="https://us02web.zoom.us/j/89249953679?pwd=VUdlekhQSlNZdi9Hem03VTFabG5lZz09" target="_blank">横もくA</a>
+            </li> -->
           </ul>
         </li>
       </ul>
@@ -68,14 +68,14 @@
   <div class="container">
     <main class="main">
       <div class="top-title">
-        <h2 class="routine-title">ルーティンやること</h2>
-        <h2 class="routine-title">タスク追跡ツール</h2>
+        <h2 class="routine-title">ルーティン</h2>
+        <h2 class="routine-title">タスク追跡</h2>
       </div>
 
       <div class="main-contents">
         <section class="routine">
           <div class="top-content">
-            <h3 class="action-title">実施可否</h3>
+            <!-- <h3 class="action-title">実施可否</h3> -->
             <div class="timer-contents">
               <h4>＜経過時間＞</h4>
               <p class="time">
@@ -96,32 +96,34 @@
             <h3>残りのタスク数<span id="rest-count">0</span></h3>
             <h3>達成度<span id="achive">0</span>%</h3>
           </div>
-          <button class="btn-reset" id="resetBtn">リセット</button>
+          <button class="btn-reset header-button" id="resetBtn">リセット</button>
         </section>
   
         <section class="task">
           <div class="task-wrapper">
-            <h3>タスク生成</h3>
             <form id="taskInputForm">
-              <button type="submit" class="btn btn-primary">生成</button>
               <div class="form-group">
-                <label for="task-name" class="flex-label">タスク名</label>
+                <label for="task-name" class="label1">タスク名</label>
                 <input type="text" class="form-content" id="task-name" placeholder="タスク名記入..." required>
               </div>
               <div class="flex">
                 <div class="form-group">
-                  <label for="task-severity"  class="flex-label">優先度</label>
+                  <label for="task-severity" class="flex-label">優先度</label>
                   <select id="task-severity" class="form-content" required>
-                    <option class="severity-option" value="高い" >高い</option>
-                    <option class="severity-option" value="標準" >標準</option>
-                    <option class="severity-option" value="低い" >低い</option>
+                    <option class="severity-option" value="必須" >必須</option>
+                    <option class="severity-option" value="任意" >任意</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="task-deadline">締切日</label>
                   <input type="date" class="form-content" id="task-deadline" value="" required>
                 </div>
+                <div class="form-group">
+                  <label for="task-url">フォームリンク</label>
+                  <input type="url" class="form-content" id="task-url" value="" required placeholder="フォームやサイトリンク記入...">
+                </div>
               </div>
+              <button type="submit" class="header-button create-task-btn">生成</button>
             </form>
           </div>
           <div class="created-task">
@@ -134,3 +136,5 @@
 
 </body>
 </html>
+
+
